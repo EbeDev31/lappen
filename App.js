@@ -8,7 +8,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View,Animated} from 'react-native';
 import MapView from 'react-native-maps'
 import { createAppContainer, createStackNavigator,} from "react-navigation"
 
@@ -47,7 +47,7 @@ Instructor:{
               headerTitle:"Dangerous Ruben"
           },
       },
-      
+
 Payment:{
 
           screen:Payment,
@@ -59,8 +59,62 @@ Payment:{
 
 },
 
+   
+
 )
 
+const ModalNavigator = createStackNavigator(
+  {
+    SchoolPage: { screen: SchoolPage ,
+     navigationOptions: {
+            headerTitle:"First Bitch"
+        },
+      },
+    Chat: { screen: Chat ,
+          navigationOptions: {
+            headerTitle:"Shaba Bitch"
+        },
+
+      },
+  },
+  {
+    // headerMode: 'none',
+    // mode: 'modal',
+     //{
+    //   gesturesEnabled: false,
+          headerMode: 'none',//null,
+    // },
+
+    // navigationOptions: {
+    
+           // headerTitle:"Try Bitch"
+     //  }, 
+    // transitionConfig: () => ({
+    //   transitionSpec: {
+    //     duration: 300,
+    //     easing: Easing.out(Easing.poly(4)),
+    //     timing: Animated.timing,
+    //   },
+    //   screenInterpolator: sceneProps => {
+    //     const { layout, position, scene } = sceneProps;
+    //     const { index } = scene;
+
+    //     const height = layout.initHeight;
+    //     const translateY = position.interpolate({
+    //       inputRange: [index - 1, index, index + 1],
+    //       outputRange: [height, 0, 0],
+    //     });
+
+    //     const opacity = position.interpolate({
+    //       inputRange: [index - 1, index - 0.99, index],
+    //       outputRange: [0, 1, 1],
+    //     });
+
+    //     return { opacity, transform: [{ translateY }] };
+    //   },
+    // }),
+  }
+);
 
 const Feed= createStackNavigator({
  
@@ -72,12 +126,19 @@ Home:{screen:SchoolOnMap,
       },
 
 
-School:{screen:SchoolPageStack,
+School:{screen:ModalNavigator,
+ 
       },
 
 },
 { //Default Navigation Options
-   
+
+
+   // defaultNavigationOptions: {
+   //  //   gesturesEnabled: false,
+   //        headerMode: 'none',//null,
+   //   },
+   //headerMode: 'none',
    /* defaultNavigationOptions: {
         headerTitle:(
                     <Header/>
@@ -94,6 +155,10 @@ School:{screen:SchoolPageStack,
 
   })
 
-
-export default createAppContainer(Feed);
+const AppContainer = createAppContainer(Feed);
+export default class App extends React.Component {
+  render() {
+    return <AppContainer />;
+  }
+}
 

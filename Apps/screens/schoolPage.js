@@ -8,48 +8,109 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,TouchableOpacity} from 'react-native';
-import MapView from 'react-native-maps'
+import {Platform, StyleSheet, Text, View,Image,TouchableOpacity,ScrollView,Dimensions} from 'react-native';
+import MapView from 'react-native-maps';
+import { Card, ListItem, Button, Icon } from 'react-native-elements'
+import ScrollCompo from "./scrollComponent"
+import Rev from "./trial"
 
+import SchoolOverView from './schoolOverview'
+const users = [
+ {
+    name: 'brynn',
+    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
+ },
+ //... // more users here
+]
+
+const width2=Dimensions.get("window").width;
+const height2=Dimensions.get("window").height;
 export default class SchoolPage extends Component{
+
   render() {
     return (
           <View style={styles.container}>
+           <View style={[styles.container,{margin:5}]}>
+              <ScrollView style={styles.wrapper}>
 
-            <Text style={styles.title}>
-              SCHOOL PAGE
-            </Text>
+                <View style={styles.container2}>
+                <SchoolOverView/>
+                
+                 </View>
 
+                 <View style={styles.Aboutschool}>
+                  
+                      <Text style={styles.text}>
+                          About Dette Driving School
 
-            <View style={styles.headerChat}>
-              <TouchableOpacity onPress={()=>{this.props.navigation.navigate("Chat")}} 
-                style={styles.button}>
-                  <Text style={styles.text}>
-                      HEADER & CHAT SECTION
-                    </Text>
-              </TouchableOpacity>
-            </View>
+                          udshfgbhjdbnhjvbsfhgblvhsr
+                          sbhsrghersbhgvsreger
+                          greyghvresghverhgver
+                          ggrugbsergvserg
+                          sergnerygbrgeg
+                          e
+                        </Text>
+                      <TouchableOpacity onPress={()=>{this.props.navigation.navigate("payment")}} 
+                        style={styles.button}>
+                          <Text style={styles.text}>
+                          BOOK NOW
+                          </Text>
+                      </TouchableOpacity>
+                
+                </View>
 
-            <View >
-              <TouchableOpacity onPress={()=>{this.props.navigation.navigate("Payment")}} 
-                style={styles.button}>
-                  <Text style={styles.text}>
-                      BOOKING & PAYMENT SECTION
-                    </Text>
-              </TouchableOpacity>
+                 <View style={styles.InstructScrView}>
+                   <View style={{paddingRight:10,width:"100%",flexDirection:"row",backgroundColor:"orange", justifyContent:"space-around"}}>
+                             <Text>
+                                Cars
+                              </Text>
 
-            </View>
+                              <Text>
+                                Filter
+                              </Text>
+                          </View>  
+                  
+                     <ScrollCompo for={"instructors"}/>
+                  </View>
 
-            <View >
-              <TouchableOpacity onPress={()=>{this.props.navigation.navigate("Instructor")}} 
-                style={styles.button}>
-                  <Text style={styles.text}>
-                      Ki Lo SA
-                    </Text>
-              </TouchableOpacity>
+                  <View style={styles.CarScrView}>
+                    <View style={{paddingRight:10,width:"100%",flexDirection:"row",backgroundColor:"orange", justifyContent:"space-around"}}>
+                             <Text>
+                                Cars
+                              </Text>
 
-            </View>
+                              <Text>
+                                Filter
+                              </Text>
+                          </View>  
+                    
+                      <ScrollCompo for={"Cars"}/>
+                        
+                  </View>
+                
 
+                <View style={styles.location}>
+                        
+                      <Text style={styles.text}>
+                          MapView/LOCATION
+                        </Text>
+
+                       <MapView style={styles.map}/>
+                
+                  </View>
+
+                <View style={styles.RevScrView}>
+                  
+                   <Rev/>
+                   <Rev/>
+                   <Rev/>
+
+                
+                </View>
+                
+
+             </ScrollView>
+             </View>
           </View>
     );
   }
@@ -58,13 +119,82 @@ export default class SchoolPage extends Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-   justifyContent: 'space-between',
+   //justifyContent: 'space-between',
    //  //alignItems: 'center',
-    backgroundColor: 'blue',
+    backgroundColor: 'white',
   },
-  schoolPanel:{
-    flex:0.3,
-    backgroundColor:"blue",
+  map:{
+    ...StyleSheet.absoluteFillObject
+  },
+   container2: {
+    flex: 1,
+   //justifyContent: 'space-between',
+   //  //alignItems: 'center',
+    backgroundColor: 'red',
+  },
+  image:{height:50,
+    width:50},
+  Overview:{
+    //flex:0.3,
+    height:400,
+    backgroundColor:"orange",
+    //justifyContent: 'center',
+  },
+  Aboutschool:{
+    //flex:0.3,
+    //backgroundColor:"gray",
+    marginBottom:10,
+    //justifyContent: 'center',
+  },
+  InstructScrView:{
+    marginBottom:10,
+    //flex:0.3,
+    //flexDirection:"row",
+   // height:200,
+    backgroundColor:"white",
+    //justifyContent: 'center',
+  },
+    instructors:{
+     // marginBottom:10,
+    //flex:0.3,
+    //flexDirection:"row",
+    
+    backgroundColor:"gray",
+    //justifyContent: 'center',
+  },
+   CarScrView:{
+    marginBottom:10,
+    //flex:0.3,
+   // flexDirection:"row",
+    //height:200,
+    backgroundColor:"white",
+    //justifyContent: 'center',
+  },
+    car:{
+    //flex:0.3,
+   //flexDirection:"row",
+    backgroundColor:"gray",
+    //justifyContent: 'center',
+  },
+    location:{
+    //flex:0.3,
+   //flexDirection:"row",
+    height:200,
+    backgroundColor:"gray",
+    //justifyContent: 'center',
+  },
+   RevScrView:{
+    //flex:0.3,
+    //flexDirection:"row",
+    //height:200,
+    backgroundColor:"white",
+    //justifyContent: 'center',
+  },
+    review:{
+    //flex:0.3,
+    //flexDirection:"row",
+   // height:200,
+    backgroundColor:"gray",
     //justifyContent: 'center',
   },
   text:{
@@ -76,9 +206,13 @@ const styles = StyleSheet.create({
     color:"gray",
   },
    button:{
-    height:100,
-    //width:100,
+    alignSelf :"center",
+    height:50,
+    width:300,
+    borderRadius:10,
     backgroundColor: 'green',
-    //marginLeft:10,
+    margin:20,
+    justifyContent: 'center',
+    alignItems:"center"
   }
 });

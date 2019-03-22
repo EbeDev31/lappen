@@ -13,12 +13,21 @@ import MapView from 'react-native-maps'
 
 import Instructor from "./instructorProfile"
 
+import ScrollCompo from "./scrollComponent"
+
 export default class App extends Component {
+
+nopres=()=>{
+	this.props.navigation.navigate("School")
+}
+
   render() {
     return (
     <View style={styles.container}>
         <MapView style={styles.map}/>
         <View style={styles.schoolsPanel}>
+
+				<ScrollCompo for={"instructors"} onPress={this.nopres}/>
         	 <TouchableOpacity onPress={()=>{this.props.navigation.navigate("School")}} 
         	 style={styles.button}>
       			 <Text style={styles.text}>
